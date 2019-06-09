@@ -1,5 +1,5 @@
 # Table of contents
 
-* [Guide](SUMMARY.md)
+* [Guide](README.md)
 * [Bit Manipulation](bit-manipulation.md)
 
