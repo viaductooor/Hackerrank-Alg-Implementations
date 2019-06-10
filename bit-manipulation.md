@@ -238,3 +238,80 @@ bn-1 = an-1⊕an
 
 ## 思路
 
+根据这组数的最高的不同位b将这组数分成两组A和B，A组中所有数的b为0，B组中的所有数的b为1。比如1011,1100,1111就应该根据第二位将其分为[1011]和[1100,1111]。因为A（或B）组内部各个数相互异或的结果一定是小于A与B之间的数的异或的，所以要使得总的分数尽量小，就应该将A和B分开，A中有且只有一个数和B中的数相邻，将其记为ak和bk。ak和bk应该选择所有可能情况中异或最小的一对。
+
+假设A的长度是m，B的长度是n，遍历所有ak和bk的复杂度为O(mn)，而因为m+n<=3000，所以蛮力法是可行的（最差情况为1500*1500=2250000）。
+
+**判断某一位是1还是0**
+
+将该位置为1，其余为置0，然后与原来的数亦或，如果变大了说明那一位原来是0，如果减小了说明那一位原来是1。（下面的代码使用的这个方法）
+
+或者不断右移，直到这一位到了最右边，判断奇偶。
+
+```python
+def anotherMinimaxProblem(a):
+    A,B = [],[]
+    p = max(a)^min(a)
+    if p==0:
+        # means every element is the same
+        return 0
+    else:
+        # xor max and min to get the highest different bit
+        th = 1<<math.floor(math.log(p,2))
+        for i in a:
+            if i^th>i:
+                A.append(i)
+            else:
+                B.append(i)
+        else:
+            minscore = A[0]^B[0]
+            for i in A:
+                for j in B:
+                    minscore = min(i^j,minscore)
+        return minscore
+```
+
+# Sansa and XOR
+
+https://www.hackerrank.com/challenges/sansa-and-xor/problem
+
+给定一个数组，求这个数组的所有连续子数组的异或和的异或和。
+
+比如说输入：arr=[1,2,3]
+
+那么要求的是：1⊕2⊕3⊕(1⊕2)⊕(2⊕3)⊕(1⊕2⊕3) = 2
+
+## 思路
+
+解题思路就是找规律，看每个元素在计算公式里面出现的次数是奇数还是偶数。
+
+将元素ai出现的次数记为T(i)，数组长度记为n，那么可以得到：
+
+```
+T(1) = n
+T(2) = 2*(n-1)
+T(3) = 3*(n-2)
+...
+T(n-1) = (n-1)*2
+T(n) = n
+```
+
+也就是说，当n为偶数的时候，所有数都出现偶数次，总的异或和为0；当n为奇数的时候，a1、a3、a5、...an出现奇数次，可以纳入计算。
+
+```python
+def sansaXor(arr):
+    if len(arr)%2==0:
+        return 0
+    else:
+        res = 0
+        for i in range(0,len(arr),2):
+            res^=arr[i]
+        return res
+```
+
+# AND Product
+
+https://www.hackerrank.com/challenges/and-product/problem
+
+给定两个整数A和B，求A和B之间所有自然数按位与的结果。
+
