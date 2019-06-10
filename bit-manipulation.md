@@ -7,7 +7,7 @@ Sample Input: 0 0 1 2 1
 Sample Output: 2
 ```
 
-## 思路1
+**思路 1**
 
 可以用set来实现。遍历数组，如果这个数set中已经存在，则将其删除；否则将其添加到set，最后剩下的就是只出现一次的数。
 
@@ -22,7 +22,7 @@ def lonelyinteger(a):
     return s.pop()
 ```
 
-## 思路2
+**思路 2**
 
 使用位亦或实现。一个数和他本身亦或得到的是0，0和任何数亦或得到那个数本身，因此把这个数组中的所有数亦或一遍得到的数就是那个只出现一次的数。
 
@@ -42,7 +42,7 @@ https://www.hackerrank.com/challenges/maximizing-xor/problem
 
 ∀ L ≤ A ≤ B ≤ R, 找出 A xor B 的最大值。
 
-## 思路1
+**思路 1**
 
 蛮力法。因为问题规模在这里是1000，所以可以接受复杂度为O(n^ 2)的算法。
 
@@ -55,7 +55,7 @@ def maximizingXor(l, r):
     return maxxor
 ```
 
-## 思路2
+**思路 2**
 
 先将L和R亦或一下，记录下这个数的最高位。最后的结果就是将这一位以及之后所有的位置为1。
 
@@ -75,7 +75,7 @@ https://www.hackerrank.com/challenges/counter-game/problem
 - 如果N不是2的幂，则将N减少小于N的最大2的幂
 - 如果N为1，结束，返回这一系列操作的次数
 
-## 思路
+**思路**
 
 - 判断N是否为2的幂就是判断（N与N-1），值为0则为2的幂；
 - 减少一半就是右移一位；
@@ -112,7 +112,7 @@ A是一个序列，A中的元素A[i]的定义如下：
 
 求A中任意一个区间A[l]到A[r]的所有数的异或和。
 
-## 思路
+**思路**
 
 根据推导，A[i]=1⊕2⊕3⊕...⊕i
 
@@ -155,7 +155,7 @@ https://www.hackerrank.com/challenges/sum-vs-xor/problem
 
 给定一个n（0~10^15），找到所有的x（0~n），使n+x=n⊕x。输出x可能的个数。
 
-## 思路
+**思路**
 
 异或可以看作不进位的加法，所以只要保证加法过程中不进位，那么和异或的结果就是相同的。
 
@@ -179,7 +179,7 @@ https://www.hackerrank.com/challenges/the-great-xor/problem
 - a⊕x > x
 - 0 < a < x
 
-## 思路
+**思路**
 
 如果修改x中的一些位，使其值增加，那么一定有一位是从0修改到1。从高到低找到第一个这样的位，记为e。e的特点有：
 
@@ -211,7 +211,7 @@ https://www.hackerrank.com/challenges/flipping-bits/problem
 
 给定一个32位无符号整型的数，将其转化位二进制数之后，每一位都翻转一下，输出翻转之后的无符号整型数。
 
-# 思路
+**思路**
 
 Python的数number是没有大小限制的，所以不用考虑溢出的问题。直接用这个数异或全1（(1<<32)-1）即可。
 
@@ -236,7 +236,7 @@ bn-1 = an-1⊕an
 
 最大的b的值就是这个序列的分数。找到分数最小的序列，输出这个序列的分数。
 
-## 思路
+**思路**
 
 根据这组数的最高的不同位b将这组数分成两组A和B，A组中所有数的b为0，B组中的所有数的b为1。比如1011,1100,1111就应该根据第二位将其分为[1011]和[1100,1111]。因为A（或B）组内部各个数相互异或的结果一定是小于A与B之间的数的异或的，所以要使得总的分数尽量小，就应该将A和B分开，A中有且只有一个数和B中的数相邻，将其记为ak和bk。ak和bk应该选择所有可能情况中异或最小的一对。
 
@@ -281,7 +281,7 @@ https://www.hackerrank.com/challenges/sansa-and-xor/problem
 
 那么要求的是：1⊕2⊕3⊕(1⊕2)⊕(2⊕3)⊕(1⊕2⊕3) = 2
 
-## 思路
+**思路**
 
 解题思路就是找规律，看每个元素在计算公式里面出现的次数是奇数还是偶数。
 
@@ -314,4 +314,26 @@ def sansaXor(arr):
 https://www.hackerrank.com/challenges/and-product/problem
 
 给定两个整数A和B，求A和B之间所有自然数按位与的结果。
+
+**思路**
+
+先得到A和B前面一样的部分，这部分不变，后面的所有位置为0。
+
+A和B异或可以得到不同位的最高位，将这一位以及后面的位置1得到kmask；将A的所有有效为置1得到kall。kmask和kall异或可以将前面相同部分的为设置为1，后面不同部分的设置为0，将这个数与A即可实现前面相同部分不变，后面部分置0。
+
+```python
+def andProduct(a, b):
+    c = a^b
+    if c==0:
+        return a
+    elif a&b==0:
+        return 0
+    else:
+        kmask = (1<<math.floor(math.log(c,2))+1)-1
+        kall = (1<<math.floor(math.log(a,2))+1)-1
+        return (kmask^kall)&a
+```
+
+
+
 
