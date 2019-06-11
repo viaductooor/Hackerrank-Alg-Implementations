@@ -119,5 +119,16 @@ def visit(city, adjlist, visited):
             visit(c, adjlist, visited)
 ```
 
-上面的代码有一个测试用例通过不了，原因是递归调用的深度超过限制。
+上面的代码有一个测试用例通过不了，原因是递归调用的深度超过限制。非递归遍历（bfs）的方法为：
+
+```python
+def visit(city,adjlist,visited):
+    tovisit = set(adjlist[city])
+    while len(tovisit)>0:
+        visited |= tovisit
+        t = set()
+        for c in tovisit:
+            t = t.union(adjlist[c])
+        tovisit = t.difference(visited)
+```
 

@@ -3,4 +3,6 @@
 * [Guide](README.md)
 * [Bit Manipulation](bit-manipulation.md)
 * [Graph Theory](graph-theory.md)
+* [Strings (Simple)](strings-simple.md)
+* [Strings (Medium)](strings-medium.md)
 
