@@ -7,6 +7,8 @@ https://www.hackerrank.com/challenges/torque-and-development/problem
 - 所有城市都可以到达图书馆
 - 总修建费用最低
 
+求最少的修建费用（包含修路和修图书馆）。
+
 **思路**
 
 因为不一定所有城市都是连通的，所以需要先分别处理各个极大连通子图，每个极大连通子图至少需要一个图书馆。
