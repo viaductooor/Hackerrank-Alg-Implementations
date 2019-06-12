@@ -268,7 +268,7 @@ https://www.hackerrank.com/challenges/weighted-uniform-string/problem
 
 **思路**
 
-先初始化一个空集合S。按顺序在初始字符串中找极大的连续子字符串，假设该字符串长度为n，且由权值为w的字符组成，那么就需要把w, 2*w, 3*w,...,n*w添加到S中。输入一个查询数字query，判断其是否在S中即可。
+先初始化一个空集合S。按顺序在初始字符串中找极大的连续子字符串，假设该字符串长度为n，且由权值为w的字符组成，那么就需要把`w, 2*w, 3*w,...,n*w`添加到S中。输入一个查询数字query，判断其是否在S中即可。
 
 ```py
 def weightedUniformStrings(s, queries):
@@ -315,3 +315,40 @@ https://www.hackerrank.com/challenges/separate-the-numbers/problem
 
 比如1234可以分割成1，2，3和4。
 
+**思路**
+
+第一个数的取值至关重要。如果给定整数长度为n的话第一个数长度的可取值范围为[1,n/2]，遍历所有可能的长度来得到结果。确定一个有效数之后，下一个数的长度等于这个数的长度或者比这个数长度大1，很容易判断是继续向后查找还是结束这次循环。
+
+```py
+def separateNumbers(s):
+    if s[0]=='0':
+        return 'NO'
+    n = len(s)
+    for firstLen in range(1,n//2+1):
+        number = int(s[0:firstLen])
+        length = firstLen
+        i = firstLen
+        while True:
+            if i == n:
+                return 'YES '+s[0:firstLen]
+            elif n-i<length:
+                break
+            elif n-i==length:
+                if int(s[i:n])-number==1:
+                    number = int(s[i:n])
+                    i += length
+                else:
+                    break
+            else:
+                if int(s[i:i+length])-number==1:
+                    number = int(s[i:i+length])
+                    i += length
+                elif int(s[i:i+length+1])-number==1:
+                    number = int(s[i:i+length+1])
+                    length += 1
+                    i += length
+                else:
+                    break
+    return 'NO'
+
+```
