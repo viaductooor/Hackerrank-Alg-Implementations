@@ -102,9 +102,48 @@ def highestValuePalindrome(s, n, k):
 
 https://www.hackerrank.com/challenges/maximum-palindromes/problem
 
-给定一个字符串s，选择s的一个子字符串（从left到right，1<=left<=right<=|s|），将其重新组合（可选择部分）形成回文字符串，求长度最长的回文字符串有多少个。
+给定一个字符串s，选择s的一个子字符串（从left到right，1<=left<=right<=|s|），将其重新组合（可选择部分）形成回文字符串，求长度最长的回文字符串有多少种。
 
 **思路**
 
 回文字符串中最多只有一个字符出现奇数次，其他字符出现偶数次。
+
+# Sherlock and Anagrams
+
+如果两个字符串包含的字符种类及数目相同，则他们是**无序变形字符串对**。给定一个字符串，求它的无序变形子字符串对的数量。
+
+字符顺序可以相同，但是必须是两个不同的子字符串。
+
+**思路**
+
+只有长度相同的字符串才可能符合要求，所以可以根据长度来遍历所有可能的情况。
+
+```py
+def sherlockAndAnagrams(s):
+	total = 0
+	for size in range(1,len(s)):
+		for i in range(len(s)-size):
+			for j in range(i+1,len(s)-size+1):
+				s1 = s[i:i+size]
+				s2 = s[j:j+size]
+				if isAna(s1,s2):
+					total += 1
+	return total
+def isAna(s1,s2):
+	l1,l2 = list(s1),list(s2)
+	l1.sort()
+	l2.sort()
+	for i in range(len(s1)):
+		if l1[i]!=l2[i]:
+			return False
+	return True
+```
+
+# Common Child
+
+如果字符串A可以通过删除0个或多个字符，从而形成字符串B，那么就成B为A的子串（child）。给定两个字符串，求他们最长公共子串的长度。
+
+**思路**
+
+动态规划
 
