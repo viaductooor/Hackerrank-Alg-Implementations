@@ -258,3 +258,60 @@ def hackerrankInString(s):
                         return 'YES'
     return 'NO'
 ```
+# Weighted Uniform Strings
+
+https://www.hackerrank.com/challenges/weighted-uniform-string/problem
+
+赋予每个字母权值，a~z分别是1~26，字符串的权值为每个组成字母权值的和。给定一个字符串，如果这个字符串是由单一字母组成的，那么这个字符串被称为uniform的。
+
+给定一个字符串，把这个字符串所有uniform子字符串（在原字符串中连续）的权值放到集合U中。然后给定一些数字，判断他们是否属于U。
+
+**思路**
+
+先初始化一个空集合S。按顺序在初始字符串中找极大的连续子字符串，假设该字符串长度为n，且由权值为w的字符组成，那么就需要把w, 2*w, 3*w,...,n*w添加到S中。输入一个查询数字query，判断其是否在S中即可。
+
+```py
+def weightedUniformStrings(s, queries):
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    weights = {letters[i]:i+1 for i in range(26)}
+    result = []
+    allset = set()
+    count = 1
+    if len(s)<2:
+        allset.add(weights[s[0]])
+    else:
+        for i in range(len(s)-1):
+            if s[i]!=s[i+1]:
+                for t in range(1,count+1):
+                    allset.add(t*weights[s[i]])
+                count = 1
+            else:
+                count += 1
+            if i==len(s)-2:
+                if s[i]==s[i+1]:
+                    for t in range(1,count+2):
+                        allset.add(t*weights[s[i]])
+                else:
+                    allset.add(weights[s[i+1]])
+    for q in queries:
+        if q in allset:
+            result.append('Yes')
+        else:
+            result.append('No')
+    return result
+```
+
+# 
+
+# Separate the Numbers
+
+https://www.hackerrank.com/challenges/separate-the-numbers/problem
+
+给定一个整数，将其分割成两个及以上其他的**正整数**，要求：
+
+- 后一个数比前一个数多1
+- 每个分割后的数不能以0开头
+- 不能打乱每个数字在原数中的顺序
+
+比如1234可以分割成1，2，3和4。
+
