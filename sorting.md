@@ -32,6 +32,8 @@ def bigSorting(unsorted):
 
 类似于快速排序里面的partition部分，每次可以确定一个数的在最终位置，然后将这个数和对应位置上的数交换。先将数组进行一次排序（升序和降序分别进行）可以知道每个数最终的位置。
 
+整体思路是贪心算法。
+
 ```python
 def lilysHomework(arr):
     ascend = arr[:]
@@ -41,6 +43,9 @@ def lilysHomework(arr):
     return min(changeTo(arr[:],ascend),changeTo(arr[:],descend))
 
 def changeTo(originalArr,targetArr):
+    '''
+    minimum cost of changing originalArr to targetArr
+    '''
     n = len(originalArr)
     positions = {originalArr[i]:i for i in range(n)}
     nmove = 0
