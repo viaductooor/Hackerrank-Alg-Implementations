@@ -9,4 +9,5 @@ Click [here](https://viaduct.gitbook.io/crackhackerrank/) to see a preview.
 * [Graph Theory](graph-theory.md)
 * [Strings (Simple)](strings-simple.md)
 * [Strings (Medium)](strings-medium.md)
-
+* [Recursion](recursion.md)
+* [Sorting](sorting.md)

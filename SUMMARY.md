@@ -5,4 +5,6 @@
 * [Graph Theory](graph-theory.md)
 * [Strings (Simple)](strings-simple.md)
 * [Strings (Medium)](strings-medium.md)
+* [Recursion](recursion.md)
+* [Sorting](sorting.md)
 
