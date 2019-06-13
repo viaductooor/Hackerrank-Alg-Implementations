@@ -6,7 +6,9 @@
 
 **思路**
 
-使用Python3实现排序的时候可以设置多个排序标准。一般参数key是一个返回单个值的函数，比如`lambda person:person.id`，但是如果有多个排序标准的话可以按照主次顺序把他们放在元组里面返回，比如`lambda person:(person.id,person.name,person.age)`。
+使用Python3实现排序的时候可以设置多个排序标准。一般参数key是一个返回单个值的函数，比如`lambda person:person.id`，但是如果有多个排序标准的话可以按照主次顺序把他们放在元组里面返回，比如`lambda person:(person.id,person.name,person.age)`就是依次根据person的id、name和age排序。
+
+数字字符串比较大小的方式是：除去前面的'0'以外，如果两个字符串长度相等，则直接按照字符串比较的方式比较；如果长度不等，则短的字符串值更小。
 
 ```python
 def bigSorting(unsorted):
