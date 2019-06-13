@@ -26,7 +26,7 @@ X的取值范围为[1,1000]，K的取值为[2,10]。如果可以将X表示为：
 
 将函数F(target, S)定义为：从集合S中选取一个或以上的整数，使其和等于target的选取方法的总数。那么显然可以得到：
 
-![](https://latex.codecogs.com/gif.latex?F\left&space;(target,S\right&space;)&space;=&space;\begin{cases}&space;&&space;0,&space;\text{&space;if&space;}&space;S=\O\wedge&space;target\neq&space;0\\&space;&&space;0,&space;\text{&space;if&space;}&space;target<0&space;\\&space;&&space;1,&space;\text{&space;if&space;}&space;target=0&space;\\&space;&&space;F\left&space;(target-a_{i},S-\{a_{i}\}\right&space;)&plus;F\left&space;(target,S-\{a_{i}\}\right&space;),\text{&space;if&space;}&space;target>0&space;\wedge&space;S\neq&space;\O&space;\end{cases})
+![](https://latex.codecogs.com/gif.latex?F%28target%2CS%29%3D%5Cbegin%7Bcases%7D%201%20%26%20%5Ctext%7B%20if%20%7D%20target%3D0%20%5C%5C%200%20%26%20%5Ctext%7B%20if%20%7D%20S%3D%5CO%20%5Cwedge%20target%5Cneq%200%20%5C%5C%200%20%26%20%5Ctext%7B%20if%20%7D%20target%3C0%20%5C%5C%20F%28target-a_%7Bi%7D%2CS-%5Cleft%20%5C%7B%20a_%7Bi%7D%20%5Cright%20%5C%7D%29&plus;F%28target%2CS-%5Cleft%20%5C%7B%20a_%7Bi%7D%20%5Cright%20%5C%7D%29%26%20%5Ctext%7B%20if%20%7D%20target%3E0%5Cwedge%20S%5Cneq%20%5CO%20%5Cend%7Bcases%7D)
 
 其中![](https://latex.codecogs.com/gif.latex?a_{i})为S中的任意一个数，因为对于![](https://latex.codecogs.com/gif.latex?a_{i})只能有两种处理方法，选取或者不选取，然后取这两种方法得到的结果之和。
 
