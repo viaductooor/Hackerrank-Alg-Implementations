@@ -24,9 +24,9 @@ X的取值范围为[1,1000]，K的取值为[2,10]。如果可以将X表示为：
 
 **递归思想**
 
-将函数![](https://latex.codecogs.com/gif.latex?F(target,S))定义为：从集合S中选取一个或以上的整数，使其和等于target的选取方法的总数。那么显然可以得到：
+将函数F(target, S)定义为：从集合S中选取一个或以上的整数，使其和等于target的选取方法的总数。那么显然可以得到：
 
-![](https://latex.codecogs.com/gif.latex?F(target,S)&space;=&space;\begin{cases}&space;&&space;0,&space;\text{&space;if&space;}&space;S=\O\wedge&space;target\neq&space;0\\&space;&&space;0,&space;\text{&space;if&space;}&space;target<0&space;\\&space;&&space;1,&space;\text{&space;if&space;}&space;target=0&space;\\&space;&&space;F(target-a_{i},S-\{a_{i}\})&plus;F(target,S-\{a_{i}\}),\text{&space;if&space;}&space;target>0&space;\wedge&space;S\neq&space;\O&space;\end{cases})
+![](https://latex.codecogs.com/gif.latex?F\left&space;(target,S\right&space;)&space;=&space;\begin{cases}&space;&&space;0,&space;\text{&space;if&space;}&space;S=\O\wedge&space;target\neq&space;0\\&space;&&space;0,&space;\text{&space;if&space;}&space;target<0&space;\\&space;&&space;1,&space;\text{&space;if&space;}&space;target=0&space;\\&space;&&space;F\left&space;(target-a_{i},S-\{a_{i}\}\right&space;)&plus;F\left&space;(target,S-\{a_{i}\}\right&space;),\text{&space;if&space;}&space;target>0&space;\wedge&space;S\neq&space;\O&space;\end{cases})
 
 其中![](https://latex.codecogs.com/gif.latex?a_{i})为S中的任意一个数，因为对于![](https://latex.codecogs.com/gif.latex?a_{i})只能有两种处理方法，选取或者不选取，然后取这两种方法得到的结果之和。
 
