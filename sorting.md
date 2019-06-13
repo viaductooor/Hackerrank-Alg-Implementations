@@ -28,3 +28,35 @@ def bigSorting(unsorted):
 
 **思路**
 
+有序数组就是beautiful的，因此题目可以理解为：求将数组升序排序或降序排序的最小交换次数。
+
+类似于快速排序里面的partition部分，每次可以确定一个数的在最终位置，然后将这个数和对应位置上的数交换。先将数组进行一次排序（升序和降序分别进行）可以知道每个数最终的位置。
+
+```python
+def lilysHomework(arr):
+    ascend = arr[:]
+    descend = arr[:]
+    ascend.sort()
+    descend.sort(reverse=True)
+    return min(changeTo(arr[:],ascend),changeTo(arr[:],descend))
+
+def changeTo(originalArr,targetArr):
+    n = len(originalArr)
+    positions = {originalArr[i]:i for i in range(n)}
+    nmove = 0
+    for i in range(n):
+        if originalArr[i]!=targetArr[i]:
+            # exchange arr[i] and the number which is supposed to be at arr[i]
+            t1 = originalArr[i]
+            originalArr[i] = originalArr[positions[targetArr[i]]]
+            originalArr[positions[targetArr[i]]] = t1
+            # alter their indices
+            positions[t1] = positions[originalArr[i]]
+            positions[originalArr[i]] = i
+            nmove += 1
+    return nmove
+        
+```
+
+
+
