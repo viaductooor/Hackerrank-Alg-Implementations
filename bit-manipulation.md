@@ -230,8 +230,11 @@ https://www.hackerrank.com/challenges/yet-another-minimax-problem/problem
 给定一组数，对于这组数的任意一个序列a0,a1,a2,...an，计算：
 
 b0 = a0⊕a1
+
 b1 = a1⊕a2
+
 ...
+
 bn-1 = an-1⊕an
 
 最大的b的值就是这个序列的分数。找到分数最小的序列，输出这个序列的分数。
