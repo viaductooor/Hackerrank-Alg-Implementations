@@ -12,66 +12,51 @@ rotate操作定义为：三个循环左移1。比如ABC连续进行ratate操作�
 
 **思路**
 
-计算并记录长度为1~15的十字的个数，最多为2（因为需要得到的是最大的两个十字，所以相同长度的十字最多考虑两个）。
+先列出矩阵中的所有“加号”，然后两两判断是否有重叠部分，取没有重叠的“加号”对的乘机的最大值。
 
 ```python
-#!/bin/python3
+class Cross:
+    def __init__(self,row,col,margin):
+        self.row = row
+        self.col = col
+        self.margin = margin
+    def collid(self,cross):
+        s = set()
+        for j in range(self.col-self.margin,self.col+self.margin+1):
+            s.add((self.row,j))
+        for i in range(self.row-self.margin,self.row+self.margin+1):
+            s.add((i,self.col))
+        for j in range(cross.col-cross.margin,cross.col+cross.margin+1):
+            if (cross.row,j) in s:
+                return True
+        for i in range(cross.row-cross.margin,cross.row+cross.margin+1):
+            if (i,cross.col) in s:
+                return True
+        return False
 
-import math
-import os
-import random
-import re
-import sys
+def isCross(grid,row,col,margin):
+    for j in range(col-margin,col+margin+1):
+        if grid[row][j]=='B':
+            return False
+    for i in range(row-margin,row+margin+1):
+        if grid[i][col]=='B':
+            return False
+    return True
 
-# Complete the twoPluses function below.
 def twoPluses(grid):
     m,n = len(grid),len(grid[0])
-    counter = {i:0 for i in range(1,min(m,n))}
-    for l in range(1,n):
-        margin = (l-1)//2
+    maxMargin = (min(m,n)-1)//2
+    crosses = []
+    for margin in range(maxMargin+1):
         for i in range(margin,m-margin):
-            for j in range(0,n-l+1):
-                # check horizontal boxes
-                if hgood(grid,i,j,l):
-                    # check vertical boxes
-                    if vgood(grid,i-margin,j+margin,l):
-
-
-
-def grid hgood(grid,row,col,length):
-    for _ in range(col,col+length):
-        if grid[row][_]!='G':
-            return False
-    return True
-
-def grid vgood(grid,row,col,length):
-    for _ in range(row,row+length):
-        if grid[_][col]!='G':
-            return False
-    return True
-
-
-
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    nm = input().split()
-
-    n = int(nm[0])
-
-    m = int(nm[1])
-
-    grid = []
-
-    for _ in range(n):
-        grid_item = input()
-        grid.append(grid_item)
-
-    result = twoPluses(grid)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
-
+            for j in range(margin,n-margin):
+                if isCross(grid,i,j,margin):
+                    crosses.append(Cross(i,j,margin))
+    result = 0
+    for i in range(len(crosses)-1):
+        for j in range(i,len(crosses)):
+            if not crosses[i].collid(crosses[j]):
+                result = max(result,(crosses[i].margin*4+1)*(crosses[j].margin*4+1))
+    return result
 ```
 
