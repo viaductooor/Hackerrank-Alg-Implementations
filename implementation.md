@@ -6,6 +6,27 @@ rotate操作定义为：三个循环左移1。比如ABC连续进行ratate操作�
 
 给定一个由1~n组成的长度为n的数组，如果能通过若干次rotate操作（每次rotate必须是相邻的三个数）将其排序，则输出'YES'，否则输出'NO'。
 
+**思路**
+
+改变数组中两个数的先后顺序称为reverse。对于数组['A','B','C']，其中包含三个序列对'AB'，'AC'和'BC'，仔细观察由他rotate得到的两个序列BCA和CAB。例如BCA，包含的序列对有'BC'，'BA'和'CA'，相对于'ABC'来说reverse发生了两次，CAB也是一样。也就是说，每次rotate过程发生reverse的次数只能是0次或者2次。
+
+遍历数组中的所有序列对，如果他们是逆序的，也就是说前面的数比后面的数大，那么他们一定要经过至少一次（奇数次）reverse才能变成升序。如果reverse的次数为偶数，那么就能通过rotate排序，如果是奇数则不能。**至于为什么偶数个逆序对一定能通过rotate排序，没有去详细证明。**
+
+类似算法问题为：[15-puzzle](https://en.wikipedia.org/wiki/15_puzzle)
+
+```python
+def larrysArray(A):
+    numReverse = 0
+    for i in range(len(A)-1):
+        for j in range(i,len(A)):
+            if A[i]>A[j]:
+                numReverse += 1
+    if numReverse%2==0:
+        return 'YES'
+    else:
+        return 'NO'
+```
+
 # Ema's Supercomputer
 
 <https://www.hackerrank.com/challenges/two-pluses/problem>
@@ -60,3 +81,15 @@ def twoPluses(grid):
     return result
 ```
 
+# Almost Sorted
+
+<https://www.hackerrank.com/challenges/almost-sorted/problem>
+
+将一个数组排序成升序数组，每次操作只能是下面的操作之一：
+
+- 交换两个数（swap）
+- 将一个子序列翻转顺序（reverse）
+
+如果数组本身有序，则输出“YES”；如果这个数组能通过**一次**上面的操作之一变成升序，则输出“YES”并且输出操作的内容（swap优先于reverse）；如果不能通过一次操作使其变成升序，则输出“NO”。
+
+数组的长度最大为100000，数组中的每个元素唯一。
