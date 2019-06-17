@@ -633,3 +633,23 @@ def twoStrings(s1, s2):
     else:
         return 'NO'
 ```
+
+# String Construction
+
+<https://www.hackerrank.com/challenges/string-construction/problem>
+
+使用下面的操作将p构建为一个字符串s，初始时p为空串：
+
+- 在p的尾端添加一个字符，cost为1
+- 将p的某一个子字符串复制到p尾端，cost为0
+
+求最小的消耗。
+
+**思路**
+
+子字符串可以长度为1，所以只要后面需要添加的字符在之前出现过，cost就为0。所以问题实际是求s中有多少个不同的字符。
+
+```python
+def stringConstruction(s):
+    return len(set(list(s)))
+```
