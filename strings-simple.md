@@ -1,6 +1,6 @@
 # Super Reduced String
 
-https://www.hackerrank.com/challenges/reduced-string/problem
+<https://www.hackerrank.com/challenges/reduced-string/problem>
 
 给定一个仅包含小写字母的字符串。如果存在两个字母相邻且相同，则从字符串中将他们删除，重复这一操作直到不能继续删除字母。求删除过后的字符串。
 
@@ -63,7 +63,7 @@ def superReducedString(s):
 
 # CamelCase
 
-https://www.hackerrank.com/challenges/camelcase/problem
+<https://www.hackerrank.com/challenges/camelcase/problem>
 
 给定一个驼峰式命名的字符串，求该字符串包含的单次数量
 
@@ -82,7 +82,7 @@ def camelcase(s):
 
 # Strong Password
 
-https://www.hackerrank.com/challenges/strong-password/problem
+<https://www.hackerrank.com/challenges/strong-password/problem>
 
 一个有效密码的要求有：
 
@@ -123,7 +123,7 @@ def minimumNumber(n, password):
 
 # Two Characters
 
-https://www.hackerrank.com/challenges/two-characters/problem
+<https://www.hackerrank.com/challenges/two-characters/problem>
 
 给定一个字符串，消除其中的一些字符使其变成两个字符交替出现的字符串（比如"abab"）。每次删除一个字符会将字符串中跟他相同的字符一并删除。
 
@@ -185,7 +185,7 @@ def qualify(s,ch1,ch2):
 
 # Caesar Cipher
 
-https://www.hackerrank.com/challenges/caesar-cipher-1/problem
+<https://www.hackerrank.com/challenges/caesar-cipher-1/problem>
 
 定义一种加密方式：
 
@@ -215,7 +215,7 @@ def caesarCipher(s, k):
 
 # Mars Exploration
 
-https://www.hackerrank.com/challenges/mars-exploration/problem
+<https://www.hackerrank.com/challenges/mars-exploration/problem>
 
 一个原始字符串S由若干个SOS组成，将其部分修改变成了S'，求修改了多少位。
 
@@ -235,7 +235,7 @@ def marsExploration(s):
 
 # HackerRank in a String!
 
-https://www.hackerrank.com/challenges/hackerrank-in-a-string/problem
+<https://www.hackerrank.com/challenges/hackerrank-in-a-string/problem>
 
 判断一个字符串是否包含值为'hackerrank'的子字符串（不要求连续）。
 
@@ -260,7 +260,7 @@ def hackerrankInString(s):
 ```
 # Weighted Uniform Strings
 
-https://www.hackerrank.com/challenges/weighted-uniform-string/problem
+<https://www.hackerrank.com/challenges/weighted-uniform-string/problem>
 
 赋予每个字母权值，a~z分别是1~26，字符串的权值为每个组成字母权值的和。给定一个字符串，如果这个字符串是由单一字母组成的，那么这个字符串被称为uniform的。
 
@@ -305,7 +305,7 @@ def weightedUniformStrings(s, queries):
 
 # Separate the Numbers
 
-https://www.hackerrank.com/challenges/separate-the-numbers/problem
+<https://www.hackerrank.com/challenges/separate-the-numbers/problem>
 
 给定一个整数，将其分割成两个及以上其他的**正整数**，要求：
 
@@ -355,6 +355,8 @@ def separateNumbers(s):
 
 # Pangrams
 
+<https://www.hackerrank.com/challenges/pangrams/problem>
+
 给定一个字符串，判断是否26个英文字母都至少在字符串中出现了一次。
 
 **思路**
@@ -396,6 +398,8 @@ def funnyString(s):
 
 # Gemstones
 
+<https://www.hackerrank.com/challenges/gem-stones/problem>
+
 给定一些由小写字母字符串，求这些字符串都包含的字母的个数。
 
 **思路**
@@ -411,6 +415,8 @@ def gemstones(arr):
 ```
 
 # Alternative Characters
+
+<https://www.hackerrank.com/challenges/alternating-characters/problem>
 
 给定一个仅由“A”和“B”组成的字符串，删除其中的一些字符使其变为A和B交替出现的字符串，求最少需要删除的字符的个数。
 
@@ -444,4 +450,186 @@ def alternatingCharacters(s):
 
 **思路**
 
-遍历字符串中的字符，找到所有“010”的子字符串并记录下他们的位置。两个“010”之间只能间隔1个字符（01010）或者2个及以上个字符（010010）。第二种情况应该直接分开计算，有多少个010就需要修改多少次；第一种情况比较特殊，一个01010只需要修改一次（将中间的0改为1）。
+遍历字符串中的字符，对于顺序遍历到的每一个010，应该将其改为011，因为修改第一个数或者第二个数都有可能导致第三个0和之后的数组成010。
+
+```python
+def beautifulBinaryString(b):
+    i = 0
+    count = 0
+    while i < len(b)-2
+        if b[i]=='0' and b[i+1]=='1' and b[i+2]=='0':
+            count += 1
+            i += 3
+        else:
+            i += 1
+    return count
+```
+
+# The Love-letter Mystery
+
+<https://www.hackerrank.com/challenges/the-love-letter-mystery/problem>
+
+James找到了他的朋友Harry要给女朋友的情书。James很爱恶作剧，所以他决定要胡搞一下。他把信中的每个单字都变成了回文。对任何给定的字符串，他可以减少其中任何一个字符的值，例如'd'可以变成'c'，这算是一次操作。(另外，他最多只能将字符的值减少至'a'，'a'不能再被减少成'z')。找出将给定字符串转换成回文所需的最少操作次数。
+
+**思路**
+
+对称位置相同的字母不用变，对称位置不同的话改动次数为他们的差的绝对值。
+
+```python
+def theLoveLetterMystery(s):
+    total = 0
+    for i in range(len(s)//2):
+        total += abs(ord(s[i])-ord(s[len(s)-1-i]))
+    return total
+```
+
+# Palindrome Index (reserved)
+
+<https://www.hackerrank.com/challenges/palindrome-index/problem>
+
+给你一个仅由小写字母组成的字符串。你的任务是找出一个位置，删掉那个字母之后，字符串变成回文。总会有一个合法的解。如果给定的字符串是一个回文串，那么-1也将被当作其中一个合法的解。
+
+**思路**
+
+先从头开始遍历，找到第一对对称位置但值不相同的数。删除其中正确的数之后剩下的字符串就会变成回文。
+
+```python
+def palindromeIndex(s):
+    for i in range(len(s)//2):
+        if s[i]!=s[len(s)-1-i]:
+            if isPalindrome(s,i,len(s)-2-i):
+                return len(s)-1-i
+            else:
+                return i
+    return -1
+
+def isPalindrome(s,begin,end):
+    for i in range(begin,begin+(end-begin+1)//2):
+        if s[begin+i]!=s[end-i]:
+            return False
+    return True
+```
+
+# Anagram 的定义
+
+如果字符串a可以通过重新排列各个字符，变成字符串b，那么就称a和b是anagram的。
+
+# Anagram
+
+<https://www.hackerrank.com/challenges/anagram/problem>
+
+给定两个相同长度的字符串，将其中一个字符串的部分字符修改，使得两个字符串变为anagram。求至少修改多少个字符。
+
+原题中给定的是一个字符串，需要先将其对半分成两个字符串。
+
+**思路**
+
+先统计两个字符串中各个字符的个数，用字典记录为d1和d2。然后遍历d1中的各个键值对（char,freq），记录下相同部分的大小，字符串长度减去这部分的大小就是至少需要修改的字符的数量。
+
+
+```python
+def anagram(s):
+    if len(s)%2!=0:
+        return -1
+    else:
+        s1 = s[0:len(s)//2]
+        s2 = s[len(s)//2:len(s)]
+        samePart = 0
+        d1 = getDict(s1)
+        d2 = getDict(s2)
+        for ch in d1.keys():
+            if ch in d2:
+                samePart += min(d1[ch],d2[ch])
+        return len(s1)-samePart
+
+def getDict(s):
+    d = {}
+    for ch in s:
+        if ch in d:
+            d[ch] += 1
+        else:
+            d[ch] = 1
+    return d
+```
+
+# Making Anagrams
+
+<https://www.hackerrank.com/challenges/making-anagrams/problem>
+
+给定两个字符串（长度不一定相等），删除他们的部分字符使得两个字符串变为anagram字符串，求最少删除多少个字符。
+
+**思路**
+
+和题目[Anagram](#Anagram)很类似。先确定两个字符串中相同的部分，分别只保留这一部分，删除多余的字符。
+
+```python
+def makingAnagrams(s1, s2):
+    samePart = 0
+    d1 = getDict(s1)
+    d2 = getDict(s2)
+    for ch in d1.keys():
+        if ch in d2:
+            samePart += min(d1[ch],d2[ch])
+    return len(s1)+len(s2)-2*samePart
+
+def getDict(s):
+    d = {}
+    for ch in s:
+        if ch in d:
+            d[ch] += 1
+        else:
+            d[ch] = 1
+    return d
+```
+
+# Game of Thrones - I
+
+<https://www.hackerrank.com/challenges/game-of-thrones/problem>
+
+给定一个字符串，判断其是否能重新排列形成palindrome。
+
+**思路**
+
+如果一个字符串能重新排列形成palindrome，那么其中要不然所有字符都出现偶数次，要不然除了一个字符出现奇数次，其他字符出现偶数次。
+
+```python
+
+def gameOfThrones(s):
+    d = getDict(s)
+    numOdd = 0
+    for freq in d.values():
+        if freq%2!=0:
+            numOdd += 1
+            if numOdd > 1:
+                return 'NO'
+    return 'YES'
+
+def getDict(s):
+    d = {}
+    for ch in s:
+        if ch in d:
+            d[ch] += 1
+        else:
+            d[ch] = 1
+    return d
+```
+
+# Two Strings
+
+<https://www.hackerrank.com/challenges/two-strings/problem>
+
+给你两个字符串a和b，找出是否存在一个字符串同时出现在a和b中。a和b的最大长度为100000。
+
+**思路**
+
+只要有一个字符是两个字符串共有的就可以输出'YES'，因为这是一个长度为1的字符串。可以用集合的交运算来判断两个字符串是否有相同的字符。
+
+```python
+def twoStrings(s1, s2):
+    set1 = set(list(s1))
+    set2 = set(list(s2))
+    if len(set1.intersection(s2))>0:
+        return 'YES'
+    else:
+        return 'NO'
+```
