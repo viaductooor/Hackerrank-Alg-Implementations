@@ -352,3 +352,96 @@ def separateNumbers(s):
     return 'NO'
 
 ```
+
+# Pangrams
+
+给定一个字符串，判断是否26个英文字母都至少在字符串中出现了一次。
+
+**思路**
+
+使用集合。
+
+```python
+def pangrams(s):
+    letters = set(list('abcdefghijklmnopqrstuvwxyz'))
+    lowers = s.lower()
+    for ch in lowers:
+        if ch in letters:
+            letters.remove(ch)   
+            if len(letters)<1:
+                return 'pangram'
+    return 'not pangram'
+```
+
+# Funny String
+
+<https://www.hackerrank.com/challenges/funny-string/problem>
+
+给定一个字符串（长度为n），计算它所有相邻两个字符的ASCII码的差的绝对值，得到长度为n-1的数组B。同时对A的逆序数组执行这个操作，得到B'。判断B和B'是否相等。
+
+**思路**
+
+先求出B，然后判读B是不是回文。
+
+```python
+def funnyString(s):
+    arr = []
+    for i in range(len(s)-1):
+        arr.append(abs(ord(s[i])-ord(s[i+1]))
+    for i in range(len(arr)//2):
+        if arr[i]!=arr[len(arr)-1-i]:
+        return 'Not Funny'
+    return 'Funny'
+```
+
+# Gemstones
+
+给定一些由小写字母字符串，求这些字符串都包含的字母的个数。
+
+**思路**
+
+用集合的交运算。
+
+```python
+def gemstones(arr):
+    letters = set(list('abcdefghijklmnopqrstuvwxyz'))
+    for s in arr:
+        letters &= set(list(s))
+    return len(letters)
+```
+
+# Alternative Characters
+
+给定一个仅由“A”和“B”组成的字符串，删除其中的一些字符使其变为A和B交替出现的字符串，求最少需要删除的字符的个数。
+
+**思路**
+
+假如某个字符连续出现了k次（k>1），那么至少需要删除k-1个数。解题的关键在于对连续字符的计数，可以考虑用栈实现。
+
+```python
+def alternatingCharacters(s):
+    stack = []
+    total = 0
+    for ch in s:
+        if len(stack)==0:
+            stack.append(ch)
+        else:
+            if ch == stack[-1]:
+                stack.append(ch)
+            else:
+                total += len(stack)-1
+                stack.clear()
+                stack.append(ch)
+    total += len(stack)-1
+    return total
+```
+
+# Beautiful Binary String
+
+<https://www.hackerrank.com/challenges/beautiful-binary-string/problem>
+
+如果一个二进制字符串（只包含1和0的字符串）中不存在'010'这样的序列，则这个字符串是beautiful的。给定一个二进制字符串，每次修改其中的一位（0变成1或者1变成0），求将其变为beautiful的最少的修改次数。
+
+**思路**
+
+遍历字符串中的字符，找到所有“010”的子字符串并记录下他们的位置。两个“010”之间只能间隔1个字符（01010）或者2个及以上个字符（010010）。第二种情况应该直接分开计算，有多少个010就需要修改多少次；第一种情况比较特殊，一个01010只需要修改一次（将中间的0改为1）。
