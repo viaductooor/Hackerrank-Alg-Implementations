@@ -1,7 +1,3 @@
-# Preview
-
-Click [here](https://viaduct.gitbook.io/crackhackerrank/) to see a preview.
-
 # Table of contents
 
 * [Guide](README.md)
@@ -11,3 +7,4 @@ Click [here](https://viaduct.gitbook.io/crackhackerrank/) to see a preview.
 * [Strings (Medium)](strings-medium.md)
 * [Recursion](recursion.md)
 * [Sorting](sorting.md)
+* [Dynamic Programming](dynamic-programming.md)

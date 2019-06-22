@@ -7,5 +7,5 @@
 * [Strings (Medium)](strings-medium.md)
 * [Recursion](recursion.md)
 * [Sorting](sorting.md)
-* [Implementation](implementation.md)
+* [Dynamic Programming](dynamic-programming.md)
 

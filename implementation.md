@@ -131,54 +131,58 @@ def almostSorted(arr):
 
 给定一个m x n的矩阵，逆时针将其旋转r次，输出旋转后的矩阵。
 
-旋转的方式是：将矩阵看成一圈一圈的数组成的，旋转的时候所有圈同时旋转。
-
 **思路**
 
-```python
-#!/bin/python3
+遍历矩阵中的每一个数，先确定这个数所在的层，然后根据这一层的行数、列数以及当前位置确定旋转之后这个位置应该是哪一个数。
 
-import math
-import os
-import random
-import re
-import sys
+解题方案里面定义了两个函数toSeq和toCoord，toSep的作用是将这一层铺展成一个一维数组，然后获取当前坐标对应在数组中的位置；toCoord的作用是将一维数组中的某一个位置还原为坐标。解题思路大致是：
 
-# Complete the matrixRotation function below.
+- 先使用toSeq，通过当前层的尺寸以及当前数的坐标获取到其在这一层当中的位置（0~2m+2n-5，其中m和n分别为行数和列数）。这一步骤求的是顺时针的位置，因为算法总体的目的是求旋转之后这个位置应该取哪个值。
+- 将这个位置加上旋转次数，然后对这一层的长度取模，得到旋转后的位置。
+- 通过toCoord将旋转后的位置还原为坐标。
+- 所求得坐标对应在原数组中的数，就是旋转后这个位置应该取的值。
+
+<mark>这道题的难度在于边界值的判定，可以用简单的例子来辅助思考。</mark>
+
+```
 def matrixRotation(matrix, r):
     m = len(matrix)
     n = len(matrix[0])
-    ncircle = (min(m,n)+1)//2
-    circlesizes = [(m-2*i,n-2*i) for i in range(ncircle)]
+    ncircle = (min(m, n) + 1) // 2
+    circlesizes = [(m - 2 * i, n - 2 * i) for i in range(ncircle)]
     resultMatrix = []
     for i in range(m):
         row = []
         for j in range(n):
-            c = min(i,j)
-            size = circlesizes[c]
-            innerRow,innerCol = i-2*c,j-2*c
-            trans = rotate(size,innerRow,innerCol)
-            row.append(matrix[i+trans[0]][j+trans[1]])
+            c = min(i, j,m-i-1,n-j-1)
+            innerM, innerN = circlesizes[c]
+            innerRow, innerCol = i -  c, j -  c
+            k = toSeq(innerM, innerN, innerRow, innerCol)
+            k = (k + r) % (2 * innerM + 2 * innerN - 4)
+            to_row, to_col = toCoord(innerM, innerN, k)
+            row.append(matrix[to_row+c][to_col+c])
         resultMatrix.append(row)
     return resultMatrix
 
 
-def rotate(size,row,col,r):
-    m,n = size
-    r = r % (2*(m+n)-4)
-    trans = [0,0]
-    k = 0
-    if col == 0:
-        k = row
-    elif row == m-1:
-        k = m - 1 + col
-    elif col = n-1:
-        k = 2*m+n-3-row
+def toSeq(m, n, row, col):
+    if row == 0:
+        return col
+    elif col == n - 1:
+        return n + row - 1
+    elif row == m - 1:
+        return 2 * n + m - col - 3
+    elif col == 0:
+        return 2 * m + 2 * n - 4 - row
+
+
+def toCoord(m, n, k):
+    if k < n:
+        return (0, k)
+    elif k < m + n - 1:
+        return (k - n + 1, n - 1)
+    elif k < 2 * n + m - 2:
+        return (m - 1, 2 * n + m - 3 - k)
     else:
-        k = 2*m + 2*n - 4 - col
-    k = (k + r)%(2*m+2*n-4)
-    if k <=m-1:
-        trans = (k,0)
-    elif k <= m+n-2:
-        trans = (m-1,k-m)
+        return (2 * m + 2 * n - 4 - k, 0)
 ```
