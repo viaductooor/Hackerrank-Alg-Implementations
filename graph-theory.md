@@ -1,6 +1,6 @@
 # Roads and Libraries
 
-https://www.hackerrank.com/challenges/torque-and-development/problem
+<https://www.hackerrank.com/challenges/torque-and-development/problem>
 
 给定一张包含多个城市的图，城市之间有路相连。现在所有的路都被破坏，需要选择部分修理，同时需要选择几个城市建立图书馆。修路的费用是c_road，建立图书馆的费用是c_lib，要求：
 
@@ -61,7 +61,7 @@ def visit(city,adjlist,visited):
 
 # Journey to the Moon
 
-https://www.hackerrank.com/challenges/journey-to-the-moon/problem
+<https://www.hackerrank.com/challenges/journey-to-the-moon/problem>
 
 同一对的宇航员来自相同的国家，比如(1,2)表示宇航员1和宇航员2来自同一个国家；现在有多个这样的对。需要从所有宇航员中选择两个来自不同国家的，求有多少种选择方法。
 

@@ -1,5 +1,7 @@
 # Lonely Integer
 
+<https://www.hackerrank.com/challenges/lonely-integer/problem>
+
 给定一个数组，除了有一个数只出现一次以外，其余的数都出现两次。找出这个只出现一次的数。
 
 ```
@@ -36,7 +38,7 @@ def lonelyinteger(a):
 
 # Maximizing XOR
 
-https://www.hackerrank.com/challenges/maximizing-xor/problem
+<https://www.hackerrank.com/challenges/maximizing-xor/problem>
 
 给定两个整数：L 和 R
 
@@ -67,7 +69,7 @@ def maximizingXor(l, r):
 
 # Counter Game
 
-https://www.hackerrank.com/challenges/counter-game/problem
+<https://www.hackerrank.com/challenges/counter-game/problem>
 
 将一个数N执行一系列操作：
 
@@ -103,7 +105,7 @@ def counterGame(n):
 
 # Xor-sequence
 
-https://www.hackerrank.com/challenges/xor-se/problem
+<https://www.hackerrank.com/challenges/xor-se/problem>
 
 A是一个序列，A中的元素A[i]的定义如下：
 
@@ -151,7 +153,7 @@ def xor(n):
 
 # Sum vs XOR
 
-https://www.hackerrank.com/challenges/sum-vs-xor/problem
+<https://www.hackerrank.com/challenges/sum-vs-xor/problem>
 
 给定一个n（0~10^15），找到所有的x（0~n），使n+x=n⊕x。输出x可能的个数。
 
@@ -172,7 +174,7 @@ def sumXor(n):
 
 # The Great XOR
 
-https://www.hackerrank.com/challenges/the-great-xor/problem
+<https://www.hackerrank.com/challenges/the-great-xor/problem>
 
 给定一个长整型数x，找到满足下面条件的a的 **数量** ：
 
@@ -207,7 +209,7 @@ def theGreatXor(x):
 
 # Flipping bits
 
-https://www.hackerrank.com/challenges/flipping-bits/problem
+<https://www.hackerrank.com/challenges/flipping-bits/problem>
 
 给定一个32位无符号整型的数，将其转化位二进制数之后，每一位都翻转一下，输出翻转之后的无符号整型数。
 
@@ -224,7 +226,7 @@ def flippingBits(n):
 
 # Yet Another Minimax Problem
 
-https://www.hackerrank.com/challenges/yet-another-minimax-problem/problem
+<https://www.hackerrank.com/challenges/yet-another-minimax-problem/problem>
 
 
 给定一组数，对于这组数的任意一个序列a0,a1,a2,...an，计算：
@@ -276,7 +278,7 @@ def anotherMinimaxProblem(a):
 
 # Sansa and XOR
 
-https://www.hackerrank.com/challenges/sansa-and-xor/problem
+<https://www.hackerrank.com/challenges/sansa-and-xor/problem>
 
 给定一个数组，求这个数组的所有连续子数组的异或和的异或和。
 
@@ -314,7 +316,7 @@ def sansaXor(arr):
 
 # AND Product
 
-https://www.hackerrank.com/challenges/and-product/problem
+<https://www.hackerrank.com/challenges/and-product/problem>
 
 给定两个整数A和B，求A和B之间所有自然数按位与的结果。
 
