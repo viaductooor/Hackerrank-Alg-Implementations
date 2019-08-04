@@ -19,15 +19,17 @@
 根据这一思路仅使用递归，而不使用动态规划的话代码为：
 
 ```python
-def getWays(target,coins):
+def getWays(n, c):
+    # dp[target][coin]
+    return getWaysRecursive(n,c,len(c)-1)
+
+def getWaysRecursive(target,coins,c):
     if target==0:
         return 1
-    elif target<0 or len(coins)<1:
+    elif c<0 or target<0:
         return 0
     else:
-        deset,sameset = coins.copy(),coins.copy()
-        randCoin = deset.pop()
-        return getWays(target-randCoin,sameset)+getWays(target,deset)
+        return getWaysRecursive(target,coins,c-1)+getWaysRecursive(target-coins[c],coins,c)
 ```
 
 这一段代码能通过部分测试用例，不通过的部分都是因为超时。
@@ -36,9 +38,9 @@ def getWays(target,coins):
 
 求矩阵种其他位置的值的方法和递归类似，需要考虑两种情况：使用当前硬币，或者不使用。
 
-当t >= c的时候，`dp[target][coin] = dp[target-recentCoin][coin] + dp[target][coin-1]`
+当t >= c的时候：`dp[target][coin] = dp[target-recentCoin][coin] + dp[target][coin-1]`
 
-否则，`dp[target][coin] = dp[target][coin-1]`
+否则，不能使用当前硬币，方法数量和不用这枚硬币的时候相同：`dp[target][coin] = dp[target][coin-1]`
 
 ```python
 def getWays(n, c):
