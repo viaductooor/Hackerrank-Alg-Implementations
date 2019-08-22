@@ -186,3 +186,49 @@ def toCoord(m, n, k):
     else:
         return (2 * m + 2 * n - 4 - k, 0)
 ```
+
+# New Year Chaos
+
+<https://www.hackerrank.com/challenges/new-year-chaos/problem>
+
+所有人排成一排，编号1到n。如果一个人贿赂他前面一个人，那么可以与之交换顺序。现在规定，所有人最多只能贿赂两次，求一共贿赂多少次才能得到给定的序列。
+
+**思路**
+
+一开始考虑的方向大致正确，即对每个位置（pre,now）先判断pre-now是否大于2，如果是的话说明当前这个人贿赂了不止两个人，因此无法形成给定的序列。
+
+然后考虑这个人一共被贿赂了多少次，即求他前面有多少个**本应在他之后**的人。这样的话代码不难写出：
+
+```python
+def minimumBribes(q):
+    moves = 0
+    q = [i-1 for i in q]
+    for i,pos in enumerate(q):
+        if pos-i>2:
+            print('Too chaotic')
+            return
+        
+        for j in range(0,i):
+            if(q[j]>pos):
+                moves += 1
+    print(moves)
+```
+
+大部分测试用例是能过的，少数超时。那么问题在哪里？
+
+实际上在求某个人前面有多少个人本应在他之后的时候，可以缩小查找的范围。对于某一个编号为k的人，编号为k+1的人如果连续贿赂两次的话会到k-1这个位置，可以发现，这是k之后的人能到达的最前面的位置了，因为贿赂次数最多为2。因此代码可以优化为：
+
+```python
+def minimumBribes(q):
+    moves = 0
+    q = [i-1 for i in q]
+    for i,pos in enumerate(q):
+        if pos-i>2:
+            print('Too chaotic')
+            return
+        for j in range(max(0,pos-1),i):
+            #bribe位置pos的数最多只能替换到pos-1的位置
+            if(q[j]>pos):
+                moves += 1
+    print(moves)
+```
